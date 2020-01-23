@@ -1,4 +1,4 @@
-FROM arm64/golang:1.13-alpine as builder
+FROM arm64v8/golang:1.13-alpine as builder
 
 WORKDIR /go/src/github.com/vlakam/socks5-server
 RUN apk add --no-cache git

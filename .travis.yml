@@ -1,0 +1,19 @@
+language: minimal
+services:
+  - docker
+
+jobs:
+  include:
+    - os: linux
+      stage: Build image
+      arch: amd64
+      script:
+        - docker build -t vlakam/socks5-server -f Dockerfile .
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        - docker push vlakam/socks5-server
+    - os: linux
+      arch: arm64
+      script:
+        - docker build -t vlakam/socks5-server:arm64 -f arm64.dockerfile .
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        - docker push vlakam/socks5-server:arm64
