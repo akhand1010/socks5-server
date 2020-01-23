@@ -8,12 +8,12 @@ jobs:
       stage: Build image
       arch: amd64
       script:
-        - docker build -t vlakam/socks5-server -f Dockerfile .
+        - docker build -t vlakam/socks5-server .
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         - docker push vlakam/socks5-server
     - os: linux
       arch: arm64
       script:
-        - docker build -t vlakam/socks5-server:arm64 -f arm64.dockerfile .
+        - docker build -t vlakam/socks5-server:arm64 .
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         - docker push vlakam/socks5-server:arm64
