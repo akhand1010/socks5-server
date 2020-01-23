@@ -1,0 +1,11 @@
+image: vlakam/socks5-server:latest
+manifests:
+  - image: vlakam/socks5-server:amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: vlakam/socks5-server:arm64v8
+    platform:
+      architecture: arm64
+      os: linux
+      variant: v8
