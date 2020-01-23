@@ -8,8 +8,15 @@ import (
 
 func main() {
 	socks5conf := &socks5.Config{
-		AuthMethods: []socks5.Authenticator{&socks5.NoAuthAuthenticator{}},
+		AuthMethods: []socks5.Authenticator{
+			&socks5.UserPassAuthenticator{
+				Credentials: socks5.StaticCredentials{
+					os.Getenv("SOCKS_USER"): os.Getenv("SOCKS_PASS"),
+				},
+			},
+		},
 	}
+	log.Printf("Auth: %s:%s", os.Getenv("SOCKS_USER"), os.Getenv("SOCKS_PASS"))
 
 	server, err := socks5.New(socks5conf)
 	if err != nil {
