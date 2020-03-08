@@ -5,8 +5,9 @@ services:
     image: vlakam/socks5-server
 #    build:
 #      context: .
-    env_file:
-      - .env
+    environment:
+      - SOCKS_USER=user
+      - SOCKS_PASS=pass
     restart: always
     logging:
       driver: "json-file"
